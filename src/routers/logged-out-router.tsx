@@ -2,8 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { isLoggedInVar } from "../apollo";
 
+interface IForm {
+  email: string;
+  password: string;
+}
 export const LoggedOutRouter = () => {
-  const { register, watch, handleSubmit, errors } = useForm();
+  const { register, watch, handleSubmit, errors } = useForm<IForm>();
   const onSubmit = () => {
     console.log(watch());
   };
@@ -21,12 +25,22 @@ export const LoggedOutRouter = () => {
           <input
             ref={register({
               required: "This is required",
-              validate: (email: string) => email.includes("@gmail.com"),
+              validate: {
+                gmail: (email: string) => email.includes("@gmail.com"),
+              },
             })}
             name="email"
             type="email"
             placeholder="email"
           />
+          {errors.email?.message && (
+            <span className="font-bold text-red-600">
+              {errors.email?.message}
+            </span>
+          )}
+          {errors.email?.type === "gmail" && (
+            <span className="font-bold text-red-600">Use gmail</span>
+          )}
         </div>
         <div>
           <input
@@ -37,6 +51,11 @@ export const LoggedOutRouter = () => {
             type="password"
             placeholder="password"
           />
+          {errors.password?.message && (
+            <span className="font-bold text-red-600">
+              {errors.password?.message}
+            </span>
+          )}
         </div>
         <button className="bg-yellow-300 text-white">submit</button>
       </form>
