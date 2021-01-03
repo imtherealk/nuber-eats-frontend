@@ -9,6 +9,8 @@ import nuberLogo from "../images/logo.svg";
 import { FormError } from "../components/form-error";
 import { Button } from "../components/button";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { isLoggedInVar } from "../apollo";
 
 const LOGIN_MUTATION = gql`
   mutation loginMutation($loginInput: LoginInput!) {
@@ -38,10 +40,11 @@ export const Login = () => {
 
   const onCompleted = (data: loginMutation) => {
     const {
-      login: { error, success, token },
+      login: { success, token },
     } = data;
     if (success) {
       console.log(token);
+      isLoggedInVar(true);
     }
   };
 
@@ -61,6 +64,9 @@ export const Login = () => {
 
   return (
     <div className="h-screen flex items-center flex-col mt-8 md:mt-24 lg:mt-24">
+      <Helmet>
+        <title>Login | Nuber Eats</title>
+      </Helmet>
       <div className="w-full max-w-screen-sm flex flex-col items-center px-5">
         <img src={nuberLogo} alt="nuber logo" className="w-48 mb-10" />
         <h4 className="w-full font-medium text-2xl mb-5">Welcome Back!</h4>
@@ -69,7 +75,10 @@ export const Login = () => {
           className="grid gap-3 my-5 w-full"
         >
           <input
-            ref={register({ required: "Email is required" })}
+            ref={register({
+              required: "Email is required",
+              pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            })}
             name="email"
             type="email"
             required
@@ -78,6 +87,9 @@ export const Login = () => {
           />
           {errors.email?.message && (
             <FormError errorMessage={errors.email?.message} />
+          )}
+          {errors.email?.type === "pattern" && (
+            <FormError errorMessage={"Please enter a valid email"} />
           )}
           <input
             ref={register({ required: "Password is required", minLength: 8 })}
@@ -96,7 +108,7 @@ export const Login = () => {
           <Button
             canClick={formState.isValid}
             loading={loading}
-            actionText="Log In"
+            actionText={"Log In"}
           />
           {loginMutationResult?.login.error && (
             <FormError errorMessage={loginMutationResult.login.error} />
