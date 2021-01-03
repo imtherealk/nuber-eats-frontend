@@ -1,16 +1,53 @@
+import { gql, useMutation } from "@apollo/client";
 import React from "react";
 import { useForm } from "react-hook-form";
+import {
+  loginMutation,
+  loginMutationVariables,
+} from "../api-types/loginMutation";
+import { FormError } from "../components/form-error";
+
+const LOGIN_MUTATION = gql`
+  mutation loginMutation($loginInput: LoginInput!) {
+    login(input: $loginInput) {
+      success
+      token
+      error
+    }
+  }
+`;
 
 interface ILoginform {
-  email?: string;
-  password?: string;
+  email: string;
+  password: string;
 }
 
 export const Login = () => {
   const { register, getValues, errors, handleSubmit } = useForm<ILoginform>();
-  const onSubmit = () => {
-    console.log(getValues());
+
+  const onCompleted = (data: loginMutation) => {
+    const {
+      login: { error, success, token },
+    } = data;
+    if (success) {
+      console.log(token);
+    }
   };
+
+  const [loginMutation, { data: loginMutationResult, loading }] = useMutation<
+    loginMutation,
+    loginMutationVariables
+  >(LOGIN_MUTATION, {
+    onCompleted,
+  });
+
+  const onSubmit = () => {
+    if (!loading) {
+      const { email, password } = getValues();
+      loginMutation({ variables: { loginInput: { email, password } } });
+    }
+  };
+
   return (
     <div className="h-screen flex items-center justify-center bg-gray-800">
       <div className="bg-white w-full max-w-lg pt-8 pb-7 rounded-lg text-center">
@@ -28,9 +65,7 @@ export const Login = () => {
             className="input"
           />
           {errors.email?.message && (
-            <span className="font-medium text-red-500">
-              {errors.email?.message}
-            </span>
+            <FormError errorMessage={errors.email?.message} />
           )}
           <input
             ref={register({ required: "Password is required", minLength: 8 })}
@@ -40,18 +75,16 @@ export const Login = () => {
             placeholder="Password"
             className="input"
           />
-
           {errors.password?.message && (
-            <span className="font-medium text-red-500">
-              {errors.password?.message}
-            </span>
+            <FormError errorMessage={errors.password?.message} />
           )}
           {errors.password?.type === "minLength" && (
-            <span className="font-medium text-red-500">
-              Password must be more than 10 characters
-            </span>
+            <FormError errorMessage="Password must be more than 8 characters" />
           )}
-          <button className="btn mt-3">Log In</button>
+          <button className="btn mt-3">{loading ? "Loading" : "Log In"}</button>
+          {loginMutationResult?.login.error && (
+            <FormError errorMessage={loginMutationResult.login.error} />
+          )}
         </form>
       </div>
     </div>
