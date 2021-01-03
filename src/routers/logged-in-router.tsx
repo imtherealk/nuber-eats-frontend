@@ -6,31 +6,21 @@ import {
   Switch,
 } from "react-router-dom";
 
-import { gql, useQuery } from "@apollo/client";
-import { meQuery } from "../api-types/meQuery";
 import { authTokenVar, isLoggedInVar } from "../apollo";
 import { LOCALSTORAGE_TOKEN } from "../constants";
-import { Restautants } from "../pages/client/restaurants";
+import { Restaurants } from "../pages/client/restaurants";
 import { NotFound } from "../pages/404";
+import { Header } from "../components/header";
+import { useMe } from "../hooks/useMe";
 
 const ClientRoutes = [
   <Route path="/" exact>
-    <Restautants />
+    <Restaurants />
   </Route>,
 ];
-const ME_QUERY = gql`
-  query meQuery {
-    me {
-      id
-      email
-      role
-      verified
-    }
-  }
-`;
 
 export const LoggedInRouter = () => {
-  const { data: data, loading, error } = useQuery<meQuery>(ME_QUERY);
+  const { data, loading, error } = useMe();
 
   const logout = () => {
     localStorage.removeItem(LOCALSTORAGE_TOKEN);
@@ -47,6 +37,7 @@ export const LoggedInRouter = () => {
   }
   return (
     <Router>
+      <Header />
       <Switch>
         {data.me.role === "Client" && ClientRoutes}
         <Redirect exact from="/login" to="/" />

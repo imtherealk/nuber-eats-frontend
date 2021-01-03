@@ -20,6 +20,9 @@ export const LoggedOutRouter = () => {
           <Login />
         </Route>
         <Redirect exact from="/" to="/login" />
+        {/* <Route path="/" exact>
+          <Restaurants />
+        </Route> */}
         <Route>
           <NotFound />
         </Route>
