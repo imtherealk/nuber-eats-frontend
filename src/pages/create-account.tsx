@@ -48,6 +48,7 @@ export const CreateAccount = () => {
       createAccount: { success },
     } = data;
     if (success) {
+      alert("Accout created. Log in now!");
       history.push("/login");
     }
   };
