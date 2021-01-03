@@ -49,7 +49,7 @@ export const CreateAccount = () => {
     } = data;
     if (success) {
       alert("Accout created. Log in now!");
-      history.push("/login");
+      history.push("/");
     }
   };
 
@@ -137,7 +137,7 @@ export const CreateAccount = () => {
         </form>
         <div>
           Already use Nuber?{" "}
-          <Link to="/login" className="text-lime-600 hover:underline">
+          <Link to="/" className="text-lime-600 hover:underline">
             Sign in
           </Link>
         </div>
