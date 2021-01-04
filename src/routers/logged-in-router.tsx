@@ -13,13 +13,14 @@ import { NotFound } from "../pages/404";
 import { Header } from "../components/header";
 import { useMe } from "../hooks/useMe";
 import { ConfirmEmail } from "../pages/user/confirm-email";
+import { EditProfile } from "../pages/user/edit-profile";
 
 const ClientRoutes = [
   <Route key={1} path="/" exact>
     <Restaurants />
   </Route>,
-  <Route key={2} path="/confirm" exact>
-    <ConfirmEmail />
+  <Route key={2} path="/edit-profile" exact>
+    <EditProfile />
   </Route>,
 ];
 
@@ -45,6 +46,9 @@ export const LoggedInRouter = () => {
       <Switch>
         {data.me.role === "Client" && ClientRoutes}
         <Redirect exact from="/login" to="/" />
+        <Route path="/confirm" exact>
+          <ConfirmEmail />
+        </Route>
         <Route>
           <NotFound />
         </Route>

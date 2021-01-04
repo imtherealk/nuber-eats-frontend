@@ -10,7 +10,7 @@ export const Header: React.FC = () => {
   return (
     <>
       {!data?.me.verified && (
-        <div className="bg-red-500 p-3 text-trueGray-200 text-xs text-center">
+        <div className="bg-red-500 p-3 text-trueGray-200 text-base text-center">
           <span>Please verify your email.</span>
         </div>
       )}
@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
             <img src={nuberLogo} alt="nuber logo" className="w-36" />
           </Link>
           <span className="text-xs">
-            <Link to="/my-profile">
+            <Link to="/edit-profile">
               <FontAwesomeIcon icon={faUserAlt} className="text-lg" />
             </Link>
           </span>

@@ -25,6 +25,7 @@ const CREATE_ACCOUNT_MUTATION = gql`
 interface ICreateAccountform {
   email: string;
   password: string;
+  passwordConfirm: string;
   role: UserRole;
 }
 
@@ -114,6 +115,21 @@ export const CreateAccount = () => {
           )}
           {errors.password?.type === "minLength" && (
             <FormError errorMessage="Password must be more than 8 characters" />
+          )}
+
+          <input
+            ref={register({
+              validate: {
+                match: value => value === getValues("password"),
+              },
+            })}
+            className="input"
+            name="passwordConfirm"
+            type="password"
+            placeholder="Retype password"
+          />
+          {errors.passwordConfirm?.type === "match" && (
+            <FormError errorMessage="Passwords do not match" />
           )}
           <select
             ref={register({ required: true })}
