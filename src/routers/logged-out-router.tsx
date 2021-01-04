@@ -8,6 +8,7 @@ import {
 import { NotFound } from "../pages/404";
 import { CreateAccount } from "../pages/create-account";
 import { Login } from "../pages/login";
+import { ConfirmEmail } from "../pages/user/confirm-email";
 
 export const LoggedOutRouter = () => {
   return (
@@ -18,6 +19,9 @@ export const LoggedOutRouter = () => {
         </Route>
         <Route path="/login" exact>
           <Login />
+        </Route>
+        <Route path="/confirm" exact>
+          <ConfirmEmail />
         </Route>
         <Redirect exact from="/" to="/login" />
         {/* <Route path="/" exact>
