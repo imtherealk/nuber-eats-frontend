@@ -20,7 +20,7 @@ export const ConfirmEmail = () => {
   const { data: userData } = useMe();
   const client = useApolloClient();
   const history = useHistory();
-  const [isMounted, setIsMounted] = useState(false);
+  // const [isMounted, setIsMounted] = useState(true);
 
   const onCompleted = (data: verifyEmailMutation) => {
     console.log("complete");
@@ -55,8 +55,10 @@ export const ConfirmEmail = () => {
     { onCompleted }
   );
 
+  const [isUnmounted, setIsUnmounted] = useState(false);
+
   useEffect(() => {
-    setIsMounted(true);
+    // setIsMounted(true);
     const [_, code] = window.location.href.split("code=");
 
     verifyEmailMutation({
@@ -67,7 +69,7 @@ export const ConfirmEmail = () => {
 
     return () => {
       console.log("unmounted");
-      setIsMounted(false);
+      setIsUnmounted(true);
     };
   }, [verifyEmailMutation]);
 

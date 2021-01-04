@@ -1,7 +1,6 @@
 import { gql, useApolloClient, useMutation } from "@apollo/client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { isNullishCoalesce } from "typescript";
 import {
   editProfileMutation,
   editProfileMutationVariables,
@@ -9,7 +8,6 @@ import {
 import { Button } from "../../components/button";
 import { FormError } from "../../components/form-error";
 import { useMe } from "../../hooks/useMe";
-import { ConfirmEmail } from "./confirm-email";
 
 const EDIT_PROFILE_MUTATION = gql`
   mutation editProfileMutation($editProfileInput: EditProfileInput!) {
@@ -133,7 +131,7 @@ export const EditProfile = () => {
         <input
           ref={register({
             validate: {
-              match: value => value === watchFields.password,
+              match: value => value === getValues("password"),
             },
           })}
           className="input"
