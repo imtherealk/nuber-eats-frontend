@@ -33,7 +33,6 @@ export const CreateAccount = () => {
   const {
     register,
     getValues,
-    watch,
     errors,
     handleSubmit,
     formState,
