@@ -13,7 +13,7 @@ export const Button: React.FC<IButtonProps> = ({
 }) => {
   return (
     <button
-      className={`focus:outline-none text-lg font-medium text-white px-5 py-3 transition-colors ${
+      className={`rounded-md focus:outline-none text-lg font-medium text-white px-5 py-3 transition-colors ${
         canClick
           ? "bg-lime-600 hover:bg-lime-700"
           : "bg-trueGray-300 pointer-events-none"
