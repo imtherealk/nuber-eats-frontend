@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
         </div>
       )}
       <header className="py-5">
-        <div className="w-full  px-5 xl:px-1 max-w-7xl mx-auto flex justify-between items-center">
+        <div className="w-full px-5 xl:px-1 max-w-7xl mx-auto flex justify-between items-center">
           <Link to="/">
             <img src={nuberLogo} alt="nuber logo" className="w-36" />
           </Link>

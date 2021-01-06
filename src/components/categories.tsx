@@ -7,7 +7,10 @@ export const Categories: React.FC = () => {
   return (
     <>
       {data?.allCategories.categories?.map(category => (
-        <div className="flex flex-col items-center group cursor-pointer ">
+        <div
+          key={category.id}
+          className="flex flex-col items-center group cursor-pointer "
+        >
           <div
             className="w-16 h-16 rounded-full bg-cover group-hover:bg-gray-100 max-w-full"
             style={{ backgroundImage: `url(${category.coverImage})` }}
