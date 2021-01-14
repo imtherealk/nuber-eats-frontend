@@ -58,44 +58,31 @@ export const Restaurants = () => {
 
   return (
     <div>
-      <div className="relative">
-        <div className="bg-yellow-400 h-screen flex overflow-hidden">
-          <img
-            alt="Foods on left"
-            src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/f54fdfb464db5da7c42e62c735bdf8f1.svg"
-            className="h-full object-cover flex-none"
+      <div className="bg-yellow-100 relative flex overflow-hidden h-96 z-0 w-full">
+        <img
+          alt="Foods on left"
+          src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/c7e1c939303e270185f0e891858e04ee.svg"
+          className="h-full w-1/2 object-cover flex-none"
+        />
+        <form className="flex-auto flex -mx-52 md:-mx-72 items-center justify-center">
+          <input
+            type="Search"
+            className="input rounded-md border-0 w-full"
+            placeholder="Search restaurants"
           />
-          <div className="flex-auto"></div>
-          <img
-            alt="Foods on right"
-            src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/bab80ef67bbbc99f2b7d45cfc395eb1b.svg"
-            className="h-full object-cover flex-none"
-          />
-        </div>
-        <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center text-black">
-          <div className="w-full px-5 xl:px-1 max-w-7xl mx-auto my-0 box-border">
-            <h1 className="m-0 text-5xl font-semibold mb-10">
-              Eat what you like
-            </h1>
-            <form className="flex items-center">
-              <input
-                type="Search"
-                className="input rounded-md border-0 w-8/12 md:w-6/12 mr-3"
-                placeholder="Search restaurants"
-              />
-              <div>
-                <Button actionText="Search" canClick={true} loading={false} />
-              </div>
-            </form>
-          </div>
-        </div>
+        </form>
+        <img
+          alt="Foods on right"
+          src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/27ec7839cfd96d0aae01e6c442741e2c.svg"
+          className="h-full w-1/2 object-cover flex-none"
+        />
       </div>
       {!loading && (
         <div className="pb-20 w-full px-5 xl:px-1 max-w-7xl mx-auto mt-8">
           <div className="flex justify-around mx-auto">
             <Categories />
           </div>
-          <div className="grid grid-cols-3 gap-x-7 gap-y-10 mt-14">
+          <div className="grid md:grid-cols-3 gap-x-7 gap-y-10 mt-14">
             {data?.restaurants.results?.map(restaurant => (
               <Restaurant
                 id={restaurant.id + ""}
