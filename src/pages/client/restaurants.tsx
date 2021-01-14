@@ -1,10 +1,11 @@
 import { gql, useQuery } from "@apollo/client";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import {
   restaurantsPageQuery,
   restaurantsPageQueryVariables,
 } from "../../api-types/restaurantsPageQuery";
-import { Button } from "../../components/button";
 import { Categories } from "../../components/categories";
 import { Restaurant } from "../../components/restaurant";
 
@@ -40,6 +41,10 @@ const RESTAURANTS_QUERY = gql`
   }
 `;
 
+interface IFormProps {
+  searchTerm: string;
+}
+
 export const Restaurants = () => {
   const [page, setPage] = useState(1);
   const { data, loading } = useQuery<
@@ -56,6 +61,16 @@ export const Restaurants = () => {
   const onNextPageClick = () => setPage(current => current + 1);
   const onPrevPageClick = () => setPage(current => current - 1);
 
+  const { register, handleSubmit, getValues } = useForm<IFormProps>();
+  const history = useHistory();
+
+  const onSearchSubmit = () => {
+    const { searchTerm } = getValues();
+    history.push({
+      pathname: "/search",
+      search: `?term=${searchTerm}`,
+    });
+  };
   return (
     <div>
       <div className="bg-yellow-100 relative flex overflow-hidden h-96 z-0 w-full">
@@ -64,8 +79,13 @@ export const Restaurants = () => {
           src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/c7e1c939303e270185f0e891858e04ee.svg"
           className="h-full w-1/2 object-cover flex-none"
         />
-        <form className="flex-auto flex -mx-52 md:-mx-72 items-center justify-center">
+        <form
+          onSubmit={handleSubmit(onSearchSubmit)}
+          className="flex-auto flex -mx-52 md:-mx-72 items-center justify-center"
+        >
           <input
+            ref={register({ required: true, min: 3 })}
+            name="searchTerm"
             type="Search"
             className="input rounded-md border-0 w-full"
             placeholder="Search restaurants"
@@ -85,6 +105,7 @@ export const Restaurants = () => {
           <div className="grid md:grid-cols-3 gap-x-7 gap-y-10 mt-14">
             {data?.restaurants.results?.map(restaurant => (
               <Restaurant
+                key={restaurant.id}
                 id={restaurant.id + ""}
                 coverImage={restaurant.coverImage}
                 name={restaurant.name}
