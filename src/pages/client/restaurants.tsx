@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import {
@@ -73,15 +74,18 @@ export const Restaurants = () => {
   };
   return (
     <div>
-      <div className="bg-yellow-100 relative flex overflow-hidden h-96 z-0 w-full">
+      <Helmet>
+        <title>Home | Nuber Eats</title>
+      </Helmet>
+      <div className="bg-yellow-100 relative flex justify-between overflow-hidden h-96 w-full">
         <img
           alt="Foods on left"
           src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/c7e1c939303e270185f0e891858e04ee.svg"
-          className="h-full w-1/2 object-cover flex-none"
+          className="z-10 h-full w-1/2 md:w-1/3 object-cover flex-none"
         />
         <form
           onSubmit={handleSubmit(onSearchSubmit)}
-          className="flex-auto flex -mx-52 md:-mx-72 items-center justify-center"
+          className="z-20 flex-auto flex -mx-48 md:-mx-12 items-center justify-center"
         >
           <input
             ref={register({ required: true, min: 3 })}
@@ -94,7 +98,7 @@ export const Restaurants = () => {
         <img
           alt="Foods on right"
           src="https://d3i4yxtzktqr9n.cloudfront.net/web-eats-v2/27ec7839cfd96d0aae01e6c442741e2c.svg"
-          className="h-full w-1/2 object-cover flex-none"
+          className="h-full w-1/2 md:w-1/3 object-cover flex-none"
         />
       </div>
       {!loading && (
