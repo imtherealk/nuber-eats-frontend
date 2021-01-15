@@ -15,6 +15,7 @@ import { useMe } from "../hooks/useMe";
 import { ConfirmEmail } from "../pages/user/confirm-email";
 import { EditProfile } from "../pages/user/edit-profile";
 import { Search } from "../pages/client/search";
+import { Category } from "../pages/client/category";
 
 const ClientRoutes = [
   <Route key={1} path="/" exact>
@@ -25,6 +26,9 @@ const ClientRoutes = [
   </Route>,
   <Route key={3} path="/search">
     <Search />
+  </Route>,
+  <Route key={4} path="/category/:slug">
+    <Category />
   </Route>,
 ];
 

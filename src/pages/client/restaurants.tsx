@@ -9,7 +9,7 @@ import {
 } from "../../api-types/restaurantsPageQuery";
 import { Categories } from "../../components/categories";
 import { Restaurant } from "../../components/restaurant";
-import { RESTAURANT_FRAGMENT } from "../../fragments";
+import { CATEGORY_FRAGMENT, RESTAURANT_FRAGMENT } from "../../fragments";
 
 const RESTAURANTS_QUERY = gql`
   query restaurantsPageQuery($input: RestaurantsInput!) {
@@ -17,11 +17,7 @@ const RESTAURANTS_QUERY = gql`
       success
       error
       categories {
-        id
-        name
-        coverImage
-        slug
-        restaurantCount
+        ...CategoryParts
       }
     }
     restaurants(input: $input) {
@@ -35,6 +31,7 @@ const RESTAURANTS_QUERY = gql`
     }
   }
   ${RESTAURANT_FRAGMENT}
+  ${CATEGORY_FRAGMENT}
 `;
 
 interface IFormProps {
@@ -98,7 +95,7 @@ export const Restaurants = () => {
       </div>
       {!loading && (
         <div className="pb-20 w-full px-5 xl:px-1 max-w-7xl mx-auto mt-8">
-          <div className="flex flex-wrap justify-around mx-auto">
+          <div className="grid grid-cols-6 lg:grid-cols-12  justify-around mx-auto">
             <Categories />
           </div>
           <div className="grid md:grid-cols-3 gap-x-7 gap-y-10 mt-14">
