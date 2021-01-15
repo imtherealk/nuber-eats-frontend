@@ -103,7 +103,7 @@ export const Restaurants = () => {
       </div>
       {!loading && (
         <div className="pb-20 w-full px-5 xl:px-1 max-w-7xl mx-auto mt-8">
-          <div className="flex justify-around mx-auto">
+          <div className="flex flex-wrap justify-around mx-auto">
             <Categories />
           </div>
           <div className="grid md:grid-cols-3 gap-x-7 gap-y-10 mt-14">
