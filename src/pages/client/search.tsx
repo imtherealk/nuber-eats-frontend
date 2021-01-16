@@ -65,14 +65,14 @@ export const Search = () => {
       </Helmet>
       <TopSearch />
       <div className="pb-20 px-5 lg:px-16 mx-auto mt-2">
-        <div className="flex space-x-5 items-center h-36 w-full border-b">
-          <span className="text-3xl text-center font-uber font-bold">
+        <div className="flex space-x-5 items-center py-3 md:pt-7 w-full border-b">
+          <span className="text-xl md:text-2xl  text-center font-uber font-bold">
             "{query}"
           </span>
         </div>
         {!loading && (
-          <div className="py-7">
-            <span className="text-3xl font-uber font-bold">
+          <div className="py-3 md:py-7">
+            <span className="text-xl md:text-2xl  font-uber font-bold">
               {data?.searchRestaurant.totalResults} Restaurants
             </span>
             <div className="grid md:grid-cols-3 gap-x-7 gap-y-10 mt-7">

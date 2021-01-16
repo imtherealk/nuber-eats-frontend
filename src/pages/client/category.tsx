@@ -57,20 +57,20 @@ export const Category = () => {
       </Helmet>
       <TopSearch />
       <div className="pb-20 px-5 lg:px-16 mx-auto mt-2">
-        <div className="flex space-x-5 items-center h-36 w-full border-b">
+        <div className="flex space-x-1 lg:space-x-5 items-center py-3 md:pt-7 w-full border-b">
           <div
-            className="w-24 h-24 rounded-full bg-cover max-w-full"
+            className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-cover max-w-full"
             style={{
               backgroundImage: `url(${data?.category.category?.coverImage})`,
             }}
           ></div>
-          <span className="text-3xl text-center font-uber font-bold">
+          <span className="text-xl md:text-2xl text-center font-uber font-bold">
             {data?.category.category?.name} delivery for you
           </span>
         </div>
         {!loading && (
-          <div className="py-7">
-            <span className="text-3xl font-uber font-bold">
+          <div className="py-3 md:py-7">
+            <span className="text-xl md:text-2xl font-uber font-bold">
               {data?.category.totalResults} Restaurants
             </span>
             <div className="grid md:grid-cols-3 gap-x-7 gap-y-10 mt-7">

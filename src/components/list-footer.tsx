@@ -14,7 +14,7 @@ export const ListFooter: React.FC<IListFooterProps> = ({
   onNextPageClick,
 }) => {
   return (
-    <div className="grid grid-cols-3 text-center max-w-md mt-10 items-center mx-auto">
+    <div className="grid grid-cols-3 text-center max-w-md mt-10 items-center mx-auto pb-20">
       {page > 1 ? (
         <button
           onClick={onPrevPageClick}
