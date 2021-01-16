@@ -100,7 +100,7 @@ export const EditProfile = () => {
       <Helmet>
         <title>Edit Profile | Nuber Eats</title>
       </Helmet>
-      <h4 className="font-semibold text-2xl mb-3">Edit Profile</h4>
+      <h4 className="font-uber font-semibold text-2xl mb-3">Edit Profile</h4>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="grid max-w-screen-sm gap-3 my-5 w-full"
