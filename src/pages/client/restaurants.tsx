@@ -1,8 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
 import {
   restaurantsPageQuery,
   restaurantsPageQueryVariables,
@@ -36,10 +34,6 @@ const RESTAURANTS_QUERY = gql`
   ${CATEGORY_FRAGMENT}
 `;
 
-interface IFormProps {
-  searchTerm: string;
-}
-
 export const Restaurants = () => {
   const [page, setPage] = useState(1);
   const { data, loading } = useQuery<
@@ -56,16 +50,6 @@ export const Restaurants = () => {
   const onNextPageClick = () => setPage(current => current + 1);
   const onPrevPageClick = () => setPage(current => current - 1);
 
-  const { register, handleSubmit, getValues } = useForm<IFormProps>();
-  const history = useHistory();
-
-  const onSearchSubmit = () => {
-    const { searchTerm } = getValues();
-    history.push({
-      pathname: "/search",
-      search: `?term=${searchTerm}`,
-    });
-  };
   return (
     <div>
       <Helmet>

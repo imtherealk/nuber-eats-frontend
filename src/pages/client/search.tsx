@@ -58,7 +58,6 @@ export const Search = () => {
     });
   }, [history, location, queryReadyToStart]);
 
-  console.log(loading, data, called);
   return (
     <div>
       <Helmet>
