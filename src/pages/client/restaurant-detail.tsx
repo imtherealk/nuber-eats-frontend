@@ -34,7 +34,7 @@ export const RestaurantDetail = () => {
     <div>
       <Helmet>
         <title>
-          Order {data?.restaurant.restaurant?.name} Delivery | Nuber Eats
+          {`Order ${data?.restaurant.restaurant?.name} Delivery | Nuber Eats`}
         </title>
       </Helmet>
       <h1>Restaurant</h1>
