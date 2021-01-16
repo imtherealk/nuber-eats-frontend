@@ -25,17 +25,17 @@ export interface restaurantsPageQuery_allCategories {
   categories: restaurantsPageQuery_allCategories_categories[] | null;
 }
 
-export interface restaurantsPageQuery_restaurants_results_category {
+export interface restaurantsPageQuery_restaurants_restaurants_category {
   __typename: "Category";
   name: string;
 }
 
-export interface restaurantsPageQuery_restaurants_results {
+export interface restaurantsPageQuery_restaurants_restaurants {
   __typename: "Restaurant";
   id: number;
   name: string;
   coverImage: string;
-  category: restaurantsPageQuery_restaurants_results_category | null;
+  category: restaurantsPageQuery_restaurants_restaurants_category | null;
   address: string;
   isPromoted: boolean;
 }
@@ -46,7 +46,7 @@ export interface restaurantsPageQuery_restaurants {
   error: string | null;
   totalPages: number | null;
   totalResults: number | null;
-  results: restaurantsPageQuery_restaurants_results[] | null;
+  restaurants: restaurantsPageQuery_restaurants_restaurants[] | null;
 }
 
 export interface restaurantsPageQuery {

@@ -27,7 +27,7 @@ const RESTAURANTS_QUERY = gql`
       error
       totalPages
       totalResults
-      results {
+      restaurants {
         ...RestaurantParts
       }
     }
@@ -78,7 +78,7 @@ export const Restaurants = () => {
             <Categories />
           </div>
           <div className="grid md:grid-cols-3 gap-x-7 gap-y-10 mt-14">
-            {data?.restaurants.results?.map(restaurant => (
+            {data?.restaurants.restaurants?.map(restaurant => (
               <Restaurant
                 key={restaurant.id}
                 id={restaurant.id + ""}
