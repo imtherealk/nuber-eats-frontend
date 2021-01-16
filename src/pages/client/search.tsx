@@ -64,7 +64,7 @@ export const Search = () => {
         <title>Search | Nuber Eats</title>
       </Helmet>
       <TopSearch />
-      <div className="pb-20 w-full px-5 xl:px-1 max-w-7xl mx-auto mt-8">
+      <div className="pb-20 px-5 lg:px-16 mx-auto mt-2">
         <div className="flex space-x-5 items-center h-36 w-full border-b">
           <span className="text-3xl text-center font-uber font-bold">
             "{query}"

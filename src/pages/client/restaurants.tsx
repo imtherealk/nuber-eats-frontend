@@ -57,7 +57,7 @@ export const Restaurants = () => {
       </Helmet>
       <TopSearch />
       {!loading && (
-        <div className="pb-20 w-full px-5 xl:px-1 max-w-7xl mx-auto mt-8">
+        <div className="pb-20 px-5 lg:px-16 mx-auto mt-8">
           <div className="grid grid-cols-6 lg:grid-cols-12  justify-around mx-auto">
             <Categories />
           </div>

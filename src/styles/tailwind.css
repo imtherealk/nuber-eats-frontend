@@ -1,9 +1,11 @@
 @tailwind base;
 .font-uber {
-  /* font-family: "Uber Move";
-  font-weight: bold; */
   font-family: "Uber Move Text";
   font-weight: normal;
+}
+.font-uber-bold {
+  font-family: "Uber Move";
+  font-weight: bold;
 }
 
 @tailwind components;

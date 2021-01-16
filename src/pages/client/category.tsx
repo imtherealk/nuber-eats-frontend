@@ -56,7 +56,7 @@ export const Category = () => {
         <title>{params.slug} | Nuber Eats</title>
       </Helmet>
       <TopSearch />
-      <div className="pb-20 w-full px-5 xl:px-1 max-w-7xl mx-auto mt-8">
+      <div className="pb-20 px-5 lg:px-16 mx-auto mt-2">
         <div className="flex space-x-5 items-center h-36 w-full border-b">
           <div
             className="w-24 h-24 rounded-full bg-cover max-w-full"

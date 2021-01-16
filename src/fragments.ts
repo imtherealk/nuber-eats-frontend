@@ -7,6 +7,7 @@ export const RESTAURANT_FRAGMENT = gql`
     coverImage
     category {
       name
+      slug
     }
     address
     isPromoted

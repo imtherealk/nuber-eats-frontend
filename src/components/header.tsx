@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
         </div>
       )}
       <header id="main-header" className="py-5 bg-white w-full transition-all">
-        <div className="w-full px-5 xl:px-1 max-w-7xl mx-auto flex justify-between items-center">
+        <div className="px-5 lg:px-16 mx-auto flex justify-between items-center">
           <Link to="/">
             <img src={nuberLogo} alt="nuber logo" className="w-36" />
           </Link>

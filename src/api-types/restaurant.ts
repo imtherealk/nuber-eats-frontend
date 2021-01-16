@@ -12,6 +12,7 @@ import { RestaurantInput } from "./globalTypes";
 export interface restaurant_restaurant_restaurant_category {
   __typename: "Category";
   name: string;
+  slug: string;
 }
 
 export interface restaurant_restaurant_restaurant {
