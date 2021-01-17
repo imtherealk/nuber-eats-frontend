@@ -11,14 +11,15 @@ export const Header: React.FC = () => {
     const header = document.getElementById("main-header");
     const sticky = header?.offsetTop || 0;
 
-    if (header) {
-      if (window.pageYOffset > sticky) {
-        header.style.position = "fixed";
-        header.style.zIndex = "30";
-      } else {
-        header.style.position = "static";
-        header.style.zIndex = "0";
-      }
+    if (header && window.pageYOffset > sticky) {
+      header.classList.remove("static");
+      header.classList.add("fixed");
+      header.style.zIndex = "30";
+    }
+    if (header && window.pageYOffset <= sticky) {
+      header.classList.remove("fixed");
+      header.classList.add("static");
+      header.style.zIndex = "0";
     }
   };
   useEffect(() => {
@@ -31,7 +32,10 @@ export const Header: React.FC = () => {
           <span>Please verify your email.</span>
         </div>
       )}
-      <header id="main-header" className="py-5 bg-white w-full transition-all">
+      <header
+        id="main-header"
+        className="py-5 bg-white w-full transition-all static"
+      >
         <div className="px-5 lg:px-16 mx-auto flex justify-between items-center">
           <Link to="/">
             <img src={nuberLogo} alt="nuber logo" className="w-36" />
