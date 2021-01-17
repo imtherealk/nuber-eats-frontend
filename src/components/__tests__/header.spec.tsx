@@ -40,7 +40,7 @@ describe("<Header />", () => {
   });
   it("renders without verify banner", async () => {
     await waitFor(async () => {
-      const { queryByText, container } = render(
+      const { queryByText } = render(
         <MockedProvider
           mocks={[
             {
@@ -71,7 +71,7 @@ describe("<Header />", () => {
   });
   it("renders fixed header on scroll", async () => {
     await waitFor(async () => {
-      const { container } = render(
+      const { getByTestId } = render(
         <MockedProvider
           mocks={[
             {
@@ -97,11 +97,10 @@ describe("<Header />", () => {
         </MockedProvider>
       );
       await new Promise(resolve => setTimeout(resolve, 0));
-      expect(container.firstChild).toHaveClass("static");
       fireEvent.scroll(window, { target: { pageYOffset: 300 } });
-      expect(container.firstChild).toHaveClass("fixed");
+      expect(getByTestId("main-header")).toHaveStyle({ position: "fixed" });
       fireEvent.scroll(window, { target: { pageYOffset: 0 } });
-      expect(container.firstChild).toHaveClass("static");
+      expect(getByTestId("main-header")).toHaveStyle({ position: "static" });
     });
   });
 });

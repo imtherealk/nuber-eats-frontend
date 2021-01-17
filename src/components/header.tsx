@@ -12,13 +12,11 @@ export const Header: React.FC = () => {
     const sticky = header?.offsetTop || 0;
 
     if (header && window.pageYOffset > sticky) {
-      header.classList.remove("static");
-      header.classList.add("fixed");
+      header.style.position = "fixed";
       header.style.zIndex = "30";
     }
     if (header && window.pageYOffset <= sticky) {
-      header.classList.remove("fixed");
-      header.classList.add("static");
+      header.style.position = "static";
       header.style.zIndex = "0";
     }
   };
@@ -28,12 +26,13 @@ export const Header: React.FC = () => {
   return (
     <>
       {!data?.me.verified && (
-        <div className="bg-red-500 p-3 text-trueGray-200 text-base text-center z">
+        <div className="bg-red-500 p-3 text-trueGray-200 text-base text-center">
           <span>Please verify your email.</span>
         </div>
       )}
       <header
         id="main-header"
+        data-testid="main-header"
         className="py-5 bg-white w-full transition-all static"
       >
         <div className="px-5 lg:px-16 mx-auto flex justify-between items-center">
