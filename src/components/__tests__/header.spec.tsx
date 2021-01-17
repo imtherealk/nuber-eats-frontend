@@ -1,5 +1,5 @@
 import { MockedProvider } from "@apollo/client/testing";
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "../../test-utils";
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ME_QUERY } from "../../hooks/useMe";
@@ -28,9 +28,7 @@ describe("<Header />", () => {
             },
           ]}
         >
-          <Router>
-            <Header />
-          </Router>
+          <Header />
         </MockedProvider>
       );
       await new Promise(resolve => setTimeout(resolve, 0));

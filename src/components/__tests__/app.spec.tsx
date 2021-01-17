@@ -1,4 +1,4 @@
-import { render, waitFor } from "@testing-library/react";
+import { render, waitFor } from "../../test-utils";
 import React from "react";
 import { isLoggedInVar } from "../../apollo";
 import { App } from "../app";

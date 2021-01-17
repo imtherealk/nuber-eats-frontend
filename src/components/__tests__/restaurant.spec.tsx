@@ -1,7 +1,6 @@
-import { render } from "@testing-library/react";
+import { render } from "../../test-utils";
 import React from "react";
 import { Restaurant } from "../restaurant";
-import { BrowserRouter as Router } from "react-router-dom";
 
 describe("<Restaurant />", () => {
   it("renders OK with props", () => {
@@ -12,9 +11,7 @@ describe("<Restaurant />", () => {
       coverImage: "x",
     };
     const { getByText, container } = render(
-      <Router>
-        <Restaurant {...restaurantProps} />
-      </Router>
+      <Restaurant {...restaurantProps} />
     );
     getByText(restaurantProps.name);
     getByText(restaurantProps.categoryName);
